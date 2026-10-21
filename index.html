@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICT461 Accessible Interface</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TASK 1: Semantic Landmarks -->
+    <header>
+        <h1>Student Registration Portal</h1>
+    </header>
+
+    <nav aria-label="Main Navigation">
+        <ul>
+            <li><a href="#main-content">Registration Form</a></li>
+            <li><a href="#footer-info">Contact Support</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content">
+        <section aria-labelledby="form-heading">
+            <h2 id="form-heading">Course Registration Form</h2>
+            <p>Please fill out all required fields marked with an asterisk (*).</p>
+
+            <!-- ARIA Live Region for Screen Readers (Task 3) -->
+            <div id="form-status" aria-live="polite" class="status-box"></div>
+
+            <form id="regForm" novalidate>
+
+                <!-- Input 1: Text -->
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required
+                           autocomplete="name"
+                           aria-required="true" aria-describedby="name-error">
+                    <span id="name-error" class="error-message" aria-live="polite"></span>
+                </div>
+
+                <!-- Input 2: Email -->
+                <div class="form-group">
+                    <label for="email">Student Email *</label>
+                    <input type="email" id="email" name="email" required
+                           autocomplete="email"
+                           aria-required="true" aria-describedby="email-error">
+                    <span id="email-error" class="error-message" aria-live="polite"></span>
+                </div>
+
+                <!-- Input 3: Phone (Pattern) -->
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}"
+                           autocomplete="tel"
+                           aria-required="true" aria-describedby="phone-error phone-hint">
+                    <span id="phone-hint" class="hint-text">Format: 0977123456 (10 digits)</span>
+                    <span id="phone-error" class="error-message" aria-live="polite"></span>
+                </div>
+
+                <!-- Input 4: Select -->
+                <div class="form-group">
+                    <label for="programme">Select Programme *</label>
+                    <select id="programme" name="programme" required aria-required="true"
+                            aria-describedby="programme-error">
+                        <option value="">-- Please Choose --</option>
+                        <option value="CS">Computer Science</option>
+                        <option value="IT">Information Technology</option>
+                        <option value="SE">Software Engineering</option>
+                    </select>
+                    <span id="programme-error" class="error-message" aria-live="polite"></span>
+                </div>
+
+                <!-- Input 5: Radio Group -->
+                <fieldset class="form-group">
+                    <legend>Mode of Study *</legend>
+                    <label><input type="radio" name="mode" value="fulltime" required aria-describedby="mode-error"> Full Time</label>
+                    <label><input type="radio" name="mode" value="parttime" aria-describedby="mode-error"> Part Time</label>
+                    <span id="mode-error" class="error-message" aria-live="polite"></span>
+                </fieldset>
+
+                <!-- Input 6: Textarea -->
+                <div class="form-group">
+                    <label for="comments">Additional Comments / Special Needs</label>
+                    <textarea id="comments" name="comments" rows="4"></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn">Submit Registration</button>
+            </form>
+        </section>
+    </main>
+
+    <footer id="footer-info">
+        <p>&copy; 2026 ICT461 Group Project. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
